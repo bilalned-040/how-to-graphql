@@ -31,7 +31,7 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-const Login = () => {
+const Login = ({ reload }) => {
   const history = useHistory();
   const [formState, setFormState] = useState({
     login: true,
@@ -48,6 +48,7 @@ const Login = () => {
     onCompleted: ({ login }) => {
       localStorage.setItem(AUTH_TOKEN, login.token);
       history.push('/');
+      reload();
     }
   });
   

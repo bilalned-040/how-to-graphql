@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { useHistory } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
 import { AUTH_TOKEN } from '../constants';
 
-const Header = () => {
+const Header = ({ reload}) => {
   const history = useHistory();
-  const authToken = localStorage.getItem(AUTH_TOKEN);
+
+  const authToken = localStorage.getItem(AUTH_TOKEN) || null;
 
   return (
     <div className="flex pa1 justify-between nowrap orange">
@@ -26,9 +27,11 @@ const Header = () => {
       <div className="flex flex-fixed">
         {authToken ? (
           <div className="ml1 pointer black" onClick={() => {
-              localStorage.removeItem(AUTH_TOKEN);
-              history.push(`/`);
-            }}>
+            localStorage.removeItem(AUTH_TOKEN);            
+            history.push(`/`);
+            reload()
+          }}
+          >
             logout
           </div>
         ) : (
