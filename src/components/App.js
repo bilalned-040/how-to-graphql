@@ -6,6 +6,7 @@ import CreateLink from './CreateLink';
 import Header from './Header';
 import LinkList from './LinkList';
 import Login from './Login';
+import Search from './Search';
 
 import './../styles/App.css';
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" component={LinkList} />
           <Route exact path="/create" component={CreateLink} />
           <Route exact path="/login" render={() => <Login reload={forceReload} />} />
+          <Route exact path="/search" component={Search} />
         </Switch>
       </div>
     </div>
